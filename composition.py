@@ -60,7 +60,7 @@ class Composition:
 
         return edge_pixels / (edged.shape[0] * edged.shape[1]) * 100
 
-    def is_vertical(self, line):
+    def is_vertical(line):
         hypo = math.sqrt((line[2] - line[0]) ** 2 + (line[3] - line[1]) ** 2)
         opponent = line[3] - line[1]
         sine = opponent / hypo

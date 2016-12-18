@@ -32,12 +32,6 @@ class Color:
             self.color_amount = self.color_amount / im_index.shape[0] * 100
         return self.color_amount
 
-    def pad(self):
-        img = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
-        p = 0.69*img[: , : , 2]
-        print p
-
-
 
     def print_basic_color_amounts(self):
         self.get_basic_color_amounts()
