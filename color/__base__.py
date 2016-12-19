@@ -7,7 +7,7 @@ COLOR_NAMES = ["black", "blue", "brown", "grey", "green", "orange", "pink",
                "purple", "red", "white", "yellow"]
 
 '''
-    Color Class extracts features related to image's color
+    color Class extracts features related to image's color
 '''
 
 
