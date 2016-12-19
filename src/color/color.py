@@ -1,3 +1,7 @@
+"""
+Color Class extracts features related to image's color
+"""
+
 import cv2
 import numpy as np
 
@@ -6,12 +10,12 @@ COLOR_LABELS_PATH = "file/maxcolor.csv"
 COLOR_NAMES = ["black", "blue", "brown", "grey", "green", "orange", "pink",
                "purple", "red", "white", "yellow"]
 
-'''
-    color Class extracts features related to image's color
-'''
-
 
 class Color:
+    """
+    Color Class extracts features related to image's color
+    """
+
     def __init__(self, image):
         self.image = np.array(image)
         self.color_labels = np.genfromtxt(COLOR_LABELS_PATH)
@@ -21,7 +25,7 @@ class Color:
     def get_basic_color_amounts(self):
         if np.sum(self.color_amount) == 0:
             shape = self.image.shape
-            self.image = self.image.reshape((shape[0]*shape[1], shape[2]))
+            self.image = self.image.reshape((shape[0] * shape[1], shape[2]))
             r = np.rint(self.image[:, 2] / 8).astype(int)
             g = 32 * np.rint(self.image[:, 1] / 8).astype(int)
             b = 32 * 32 * np.rint(self.image[:, 0] / 8).astype(int)
@@ -31,7 +35,6 @@ class Color:
                 self.color_amount[self.color_labels[i] - 1] += 1
             self.color_amount = self.color_amount / im_index.shape[0] * 100
         return self.color_amount
-
 
     def print_basic_color_amounts(self):
         self.get_basic_color_amounts()
