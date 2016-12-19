@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>composition &#8212; AAVF 1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">AAVF 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for composition</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module extracts composition features from images</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="c1"># Constant</span>
+<span class="n">PI</span> <span class="o">=</span> <span class="mf">3.141592653589793</span>
+
+
+<span class="k">def</span> <span class="nf">_get_canny_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># transforming image to gray</span>
+    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="c1"># filter high frequency value from image</span>
+    <span class="n">blurred</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">min_threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">blurred</span><span class="p">)</span>
+        <span class="n">min_threshold</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span><span class="p">))</span>
+        <span class="n">max_threshold</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">ratio</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span><span class="p">))</span>
+
+    <span class="c1"># canny edge detection</span>
+    <span class="n">edged</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Canny</span><span class="p">(</span><span class="n">blurred</span><span class="p">,</span> <span class="n">min_threshold</span><span class="p">,</span> <span class="n">max_threshold</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">edged</span>
+
+
+<div class="viewcode-block" id="vertical_horizontal_edges"><a class="viewcode-back" href="../composition.html#composition.vertical_horizontal_edges">[docs]</a><span class="k">def</span> <span class="nf">vertical_horizontal_edges</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">threshold_ratio</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the number of vertical and horizontal edges in image</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                image : array_like</span>
+<span class="sd">                    input image</span>
+
+<span class="sd">                threshold_ratio : float, optional</span>
+<span class="sd">                    Ratio between max and min threshold.</span>
+<span class="sd">                    Default value is 0.33.</span>
+<span class="sd">                    Mutual use with min and max threshold</span>
+
+<span class="sd">                min_threshold : float, optional</span>
+<span class="sd">                    min value for edge detection.</span>
+<span class="sd">                    Default is None.</span>
+
+<span class="sd">                max_threshold : float, optional</span>
+<span class="sd">                    max value for edge detection.</span>
+<span class="sd">                    Default is None.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                out : tuple</span>
+<span class="sd">                    - vertical edges : int</span>
+<span class="sd">                        number of vertical edges</span>
+<span class="sd">                    - horizontal edges : int</span>
+<span class="sd">                        number of vertical edges</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">edged</span> <span class="o">=</span> <span class="n">_get_canny_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">threshold_ratio</span><span class="p">,</span> <span class="n">min_threshold</span><span class="p">,</span> <span class="n">max_threshold</span><span class="p">)</span>
+
+    <span class="c1"># get line edges</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">HoughLinesP</span><span class="p">(</span><span class="n">edged</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># counting number of vertical and horizontal edges</span>
+    <span class="n">vertical</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">horizontal</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">l</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">_is_vertical</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+                    <span class="n">vertical</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">horizontal</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">vertical</span><span class="p">,</span> <span class="n">horizontal</span></div>
+
+
+<div class="viewcode-block" id="percentage_edge_pixels"><a class="viewcode-back" href="../composition.html#composition.percentage_edge_pixels">[docs]</a><span class="k">def</span> <span class="nf">percentage_edge_pixels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_ratio</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the amount of edge pixels on total image pixels</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                image : array_like</span>
+<span class="sd">                    input image</span>
+
+<span class="sd">                threshold_ratio : float, optional</span>
+<span class="sd">                    Ratio between max and min threshold.</span>
+<span class="sd">                    Default value is 0.33.</span>
+<span class="sd">                    Mutual use with min and max threshold</span>
+
+<span class="sd">                min_threshold : float, optional</span>
+<span class="sd">                    min value for edge detection.</span>
+<span class="sd">                    Default is None.</span>
+
+<span class="sd">                max_threshold : float, optional</span>
+<span class="sd">                    max value for edge detection.</span>
+<span class="sd">                    Default is None.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                out : float</span>
+<span class="sd">                    percentage of edge pixels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">edged</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_canny_image</span><span class="p">(</span><span class="n">threshold_ratio</span><span class="p">,</span> <span class="n">min_threshold</span><span class="p">,</span> <span class="n">max_threshold</span><span class="p">)</span>
+
+    <span class="n">edge_pixels</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">255</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">edged</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">edge_pixels</span> <span class="o">/</span> <span class="p">((</span><span class="n">edged</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">edged</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_is_vertical</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="n">hypo</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">opponent</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sine</span> <span class="o">=</span> <span class="n">opponent</span> <span class="o">/</span> <span class="n">hypo</span>
+    <span class="n">sen45</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="n">sine</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">sine</span> <span class="o">&gt;=</span> <span class="n">sen45</span><span class="p">)))</span> <span class="ow">or</span> \
+               <span class="p">(</span><span class="n">sine</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sine</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">sen45</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">AAVF 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Daniel Morales Federico Martinelli.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>

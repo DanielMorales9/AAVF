@@ -10,7 +10,8 @@ Welcome to AAVF's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   code
+   color
+   composition
 
 
 Indices and tables
