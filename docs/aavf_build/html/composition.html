@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Composition &#8212; AAVF 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Color" href="color.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="color.html" title="Color"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AAVF 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-composition">
+<span id="composition"></span><h1>Composition<a class="headerlink" href="#module-composition" title="Permalink to this headline">¶</a></h1>
+<p>This module extracts composition features from images</p>
+<dl class="function">
+<dt id="composition.percentage_edge_pixels">
+<code class="descclassname">composition.</code><code class="descname">percentage_edge_pixels</code><span class="sig-paren">(</span><em>self</em>, <em>threshold_ratio=0.33</em>, <em>min_threshold=None</em>, <em>max_threshold=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/composition.html#percentage_edge_pixels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#composition.percentage_edge_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the amount of edge pixels on total image pixels</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>image</strong> : array_like</p>
+<blockquote>
+<div><blockquote>
+<div><p>input image</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>threshold_ratio</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span><dd><p class="first last">Ratio between max and min threshold.
+Default value is 0.33.
+Mutual use with min and max threshold</p>
+</dd>
+<dt>min_threshold</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span><dd><p class="first last">min value for edge detection.
+Default is None.</p>
+</dd>
+<dt>max_threshold</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span><dd><p class="first last">max value for edge detection.
+Default is None.</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : float</p>
+<blockquote class="last">
+<div><p>percentage of edge pixels</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="composition.vertical_horizontal_edges">
+<code class="descclassname">composition.</code><code class="descname">vertical_horizontal_edges</code><span class="sig-paren">(</span><em>image</em>, <em>threshold_ratio=0.33</em>, <em>min_threshold=None</em>, <em>max_threshold=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/composition.html#vertical_horizontal_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#composition.vertical_horizontal_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of vertical and horizontal edges in image</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>image</strong> : array_like</p>
+<blockquote>
+<div><blockquote>
+<div><p>input image</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>threshold_ratio</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span><dd><p class="first last">Ratio between max and min threshold.
+Default value is 0.33.
+Mutual use with min and max threshold</p>
+</dd>
+<dt>min_threshold</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span><dd><p class="first last">min value for edge detection.
+Default is None.</p>
+</dd>
+<dt>max_threshold</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span><dd><p class="first last">max value for edge detection.
+Default is None.</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : tuple</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>vertical edges</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>number of vertical edges</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>horizontal edges</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>number of vertical edges</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="color.html"
+                        title="previous chapter">Color</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/composition.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="color.html" title="Color"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AAVF 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Daniel Morales Federico Martinelli.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>

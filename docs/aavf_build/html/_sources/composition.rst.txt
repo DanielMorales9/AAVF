@@ -1,0 +1,5 @@
+Composition
+===========
+
+.. automodule:: composition
+    :members:
