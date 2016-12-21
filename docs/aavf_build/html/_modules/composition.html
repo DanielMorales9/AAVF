@@ -84,29 +84,28 @@
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">                image : array_like</span>
-<span class="sd">                    input image</span>
+<span class="sd">            image : array_like</span>
+<span class="sd">                input image</span>
 
-<span class="sd">                threshold_ratio : float, optional</span>
-<span class="sd">                    Ratio between max and min threshold.</span>
-<span class="sd">                    Default value is 0.33.</span>
-<span class="sd">                    Mutual use with min and max threshold</span>
+<span class="sd">            threshold_ratio : float, optional</span>
+<span class="sd">                Ratio between max and min threshold.</span>
+<span class="sd">                Default value is 0.33.</span>
+<span class="sd">                Mutual use with min and max threshold</span>
 
-<span class="sd">                min_threshold : float, optional</span>
-<span class="sd">                    min value for edge detection.</span>
-<span class="sd">                    Default is None.</span>
+<span class="sd">            min_threshold : float, optional</span>
+<span class="sd">                min value for edge detection.</span>
+<span class="sd">                Default is None.</span>
 
-<span class="sd">                max_threshold : float, optional</span>
-<span class="sd">                    max value for edge detection.</span>
-<span class="sd">                    Default is None.</span>
+<span class="sd">            max_threshold : float, optional</span>
+<span class="sd">                max value for edge detection.</span>
+<span class="sd">                Default is None.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                out : tuple</span>
-<span class="sd">                    - vertical edges : int</span>
-<span class="sd">                        number of vertical edges</span>
-<span class="sd">                    - horizontal edges : int</span>
-<span class="sd">                        number of vertical edges</span>
+<span class="sd">                vertical edges : int</span>
+<span class="sd">                    number of vertical edges</span>
+<span class="sd">                horizontal edges : int</span>
+<span class="sd">                    number of vertical edges</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">edged</span> <span class="o">=</span> <span class="n">_get_canny_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">threshold_ratio</span><span class="p">,</span> <span class="n">min_threshold</span><span class="p">,</span> <span class="n">max_threshold</span><span class="p">)</span>
@@ -134,26 +133,23 @@
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">                image : array_like</span>
-<span class="sd">                    input image</span>
-
-<span class="sd">                threshold_ratio : float, optional</span>
-<span class="sd">                    Ratio between max and min threshold.</span>
-<span class="sd">                    Default value is 0.33.</span>
-<span class="sd">                    Mutual use with min and max threshold</span>
-
-<span class="sd">                min_threshold : float, optional</span>
-<span class="sd">                    min value for edge detection.</span>
-<span class="sd">                    Default is None.</span>
-
-<span class="sd">                max_threshold : float, optional</span>
-<span class="sd">                    max value for edge detection.</span>
-<span class="sd">                    Default is None.</span>
+<span class="sd">            image : array_like</span>
+<span class="sd">                input image</span>
+<span class="sd">            threshold_ratio : float, optional</span>
+<span class="sd">                Ratio between max and min threshold.</span>
+<span class="sd">                Default value is 0.33.</span>
+<span class="sd">                Mutual use with min and max threshold</span>
+<span class="sd">            min_threshold : float, optional</span>
+<span class="sd">                min value for edge detection.</span>
+<span class="sd">                Default is None.</span>
+<span class="sd">            max_threshold : float, optional</span>
+<span class="sd">                max value for edge detection.</span>
+<span class="sd">                Default is None.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                out : float</span>
-<span class="sd">                    percentage of edge pixels</span>
+<span class="sd">            float</span>
+<span class="sd">                percentage of edge pixels</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">edged</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_canny_image</span><span class="p">(</span><span class="n">threshold_ratio</span><span class="p">,</span> <span class="n">min_threshold</span><span class="p">,</span> <span class="n">max_threshold</span><span class="p">)</span>

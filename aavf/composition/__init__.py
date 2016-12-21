@@ -34,29 +34,28 @@ def vertical_horizontal_edges(image, threshold_ratio=0.33, min_threshold=None, m
 
             Parameters
             ----------
-                image : array_like
-                    input image
+            image : array_like
+                input image
 
-                threshold_ratio : float, optional
-                    Ratio between max and min threshold.
-                    Default value is 0.33.
-                    Mutual use with min and max threshold
+            threshold_ratio : float, optional
+                Ratio between max and min threshold.
+                Default value is 0.33.
+                Mutual use with min and max threshold
 
-                min_threshold : float, optional
-                    min value for edge detection.
-                    Default is None.
+            min_threshold : float, optional
+                min value for edge detection.
+                Default is None.
 
-                max_threshold : float, optional
-                    max value for edge detection.
-                    Default is None.
+            max_threshold : float, optional
+                max value for edge detection.
+                Default is None.
 
             Returns
             -------
-                out : tuple
-                    - vertical edges : int
-                        number of vertical edges
-                    - horizontal edges : int
-                        number of vertical edges
+                vertical edges : int
+                    number of vertical edges
+                horizontal edges : int
+                    number of vertical edges
 
     """
     edged = _get_canny_image(image, threshold_ratio, min_threshold, max_threshold)
@@ -84,26 +83,23 @@ def percentage_edge_pixels(self, threshold_ratio=0.33, min_threshold=None, max_t
 
             Parameters
             ----------
-                image : array_like
-                    input image
-
-                threshold_ratio : float, optional
-                    Ratio between max and min threshold.
-                    Default value is 0.33.
-                    Mutual use with min and max threshold
-
-                min_threshold : float, optional
-                    min value for edge detection.
-                    Default is None.
-
-                max_threshold : float, optional
-                    max value for edge detection.
-                    Default is None.
+            image : array_like
+                input image
+            threshold_ratio : float, optional
+                Ratio between max and min threshold.
+                Default value is 0.33.
+                Mutual use with min and max threshold
+            min_threshold : float, optional
+                min value for edge detection.
+                Default is None.
+            max_threshold : float, optional
+                max value for edge detection.
+                Default is None.
 
             Returns
             -------
-                out : float
-                    percentage of edge pixels
+            float
+                percentage of edge pixels
     """
 
     edged = self.get_canny_image(threshold_ratio, min_threshold, max_threshold)

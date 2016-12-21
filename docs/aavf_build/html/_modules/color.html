@@ -75,15 +75,15 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            image : matrix</span>
-<span class="sd">                input image</span>
-<span class="sd">            color_labels: array</span>
-<span class="sd">                basic label for each color</span>
+<span class="sd">        image : matrix</span>
+<span class="sd">            input image</span>
+<span class="sd">        color_labels : array</span>
+<span class="sd">            basic label for each color</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            out : ndarray</span>
-<span class="sd">                percentage of each basic color</span>
+<span class="sd">        ndarray</span>
+<span class="sd">            percentage of each basic color</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -109,17 +109,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            image : matrix</span>
-<span class="sd">                input image</span>
+<span class="sd">        image : matrix</span>
+<span class="sd">            input image</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            out : tuple</span>
-<span class="sd">                - mean saturation</span>
-<span class="sd">                - mean brightness</span>
-<span class="sd">                - std saturation</span>
-<span class="sd">                - std brightness</span>
-<span class="sd">                - circular variance</span>
+<span class="sd">        mean saturation</span>
+<span class="sd">        mean brightness</span>
+<span class="sd">        std saturation</span>
+<span class="sd">        std brightness</span>
+<span class="sd">        circular variance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># mean of Saturation</span>
     <span class="n">mean_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">image</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">])</span>
@@ -144,17 +143,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            brightness: float</span>
-<span class="sd">                mean value of brightness</span>
-<span class="sd">            saturation: float</span>
-<span class="sd">                mean value of saturation</span>
+<span class="sd">        brightness: float</span>
+<span class="sd">            mean value of brightness</span>
+<span class="sd">        saturation: float</span>
+<span class="sd">            mean value of saturation</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            out : tuple</span>
-<span class="sd">                - pleasure : float</span>
-<span class="sd">                - arousal : float</span>
-<span class="sd">                - dominance : float</span>
+<span class="sd">        pleasure : float</span>
+<span class="sd">        arousal : float</span>
+<span class="sd">        dominance : float</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">pleasure</span> <span class="o">=</span> <span class="mf">0.69</span> <span class="o">*</span> <span class="n">brightness</span> <span class="o">+</span> <span class="mf">0.22</span> <span class="o">*</span> <span class="n">saturation</span>
