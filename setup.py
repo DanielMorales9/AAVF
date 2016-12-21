@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-#with open('README.mk') as f:
+#with open('README.rst') as f:
 #    readme = f.read()
 
 sys.path.insert(0, os.path.abspath('/usr/local/lib/python2.7/site-packages'))

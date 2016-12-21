@@ -180,11 +180,53 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        int</span>
-<span class="sd">           image size</span>
+<span class="sd">            int</span>
+<span class="sd">                image size</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="rule_of_third"><a class="viewcode-back" href="../composition.html#composition.rule_of_third">[docs]</a><span class="k">def</span> <span class="nf">rule_of_third</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Average of S, V channels over inner rectangle</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">            image : array_like</span>
+<span class="sd">                input image in HSV space</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            tuple</span>
+<span class="sd">                average of S and V over inner rectangle</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">len_x</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">len_y</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">len_x</span><span class="o">/</span><span class="mi">3</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">len_y</span><span class="o">/</span><span class="mi">3</span>
+    <span class="n">start_y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">stop_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">stop_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">2</span>
+
+    <span class="n">sum_s</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">sum_v</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">stop_x</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">stop_y</span><span class="p">:</span>
+            <span class="n">sum_s</span> <span class="o">+=</span> <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">sum_v</span> <span class="o">+=</span> <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">start_y</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">len_x</span> <span class="o">*</span> <span class="n">len_y</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="n">sum_s</span>
+
+    <span class="n">f6</span> <span class="o">=</span> <span class="n">sum_s</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="n">xy</span>
+    <span class="n">f7</span> <span class="o">=</span> <span class="n">sum_v</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="n">xy</span>
+
+    <span class="k">return</span> <span class="n">f6</span><span class="p">,</span> <span class="n">f7</span></div>
 </pre></div>
 
           </div>

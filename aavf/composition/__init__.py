@@ -130,8 +130,50 @@ def image_size(image):
 
         Returns
         -------
-        int
-           image size
+            int
+                image size
     """
-
     return image.shape[0] + image.shape[1]
+
+
+def rule_of_third(image):
+    """
+        Average of S, V channels over inner rectangle
+
+        Parameters
+        -----------
+            image : array_like
+                input image in HSV space
+
+        Returns
+        -------
+            tuple
+                average of S and V over inner rectangle
+    """
+    len_x = image.shape[0]
+    len_y = image.shape[1]
+
+    x = len_x/3
+    y = len_y/3
+    start_y = y
+    stop_x = x * 2
+    stop_y = y * 2
+
+    sum_s = 0.0
+    sum_v = 0.0
+    while x < stop_x:
+        while y < stop_y:
+            sum_s += image[x, y, 1]
+            sum_v += image[x, y, 2]
+            y += 1
+        y = start_y
+        x += 1
+
+    xy = (len_x * len_y)
+
+    print sum_s
+
+    f6 = sum_s * 9 / xy
+    f7 = sum_v * 9 / xy
+
+    return f6, f7
