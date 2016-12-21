@@ -33,7 +33,7 @@ def vertical_horizontal_edges(image, threshold_ratio=0.33, min_threshold=None, m
             Returns the number of vertical and horizontal edges in image
 
             Parameters
-            ----------
+            -----------
             image : array_like
                 input image
 
@@ -82,7 +82,7 @@ def percentage_edge_pixels(self, threshold_ratio=0.33, min_threshold=None, max_t
             Returns the amount of edge pixels on total image pixels
 
             Parameters
-            ----------
+            -----------
             image : array_like
                 input image
             threshold_ratio : float, optional
@@ -117,3 +117,21 @@ def _is_vertical(line):
 
     return (not (sine > 1 or not (sine >= sen45))) or \
                (sine >= -1 and not sine > -sen45)
+
+
+def image_size(image):
+    """
+        Returns the image_size as the sum of the resolution
+
+        Parameters
+        -----------
+            image : array_like
+                input image
+
+        Returns
+        -------
+        int
+           image size
+    """
+
+    return image.shape[0] + image.shape[1]
