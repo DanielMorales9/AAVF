@@ -66,23 +66,16 @@ black, blue, brown, grey, green, orange, pink, purple, red, white, yellow</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>image</strong> : matrix</p>
-<blockquote>
-<div><blockquote>
-<div><p>input image</p>
-</div></blockquote>
-<dl class="docutils">
-<dt>color_labels: array</dt>
-<dd><p class="first last">basic label for each color</p>
-</dd>
-</dl>
-</div></blockquote>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image</strong> (<em>matrix</em>) &#8211; input image</li>
+<li><strong>color_labels</strong> (<a class="reference external" href="https://docs.python.org/2/library/array.html#module-array" title="(in Python v2.7)"><em>array</em></a>) &#8211; basic label for each color</li>
+</ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : ndarray</p>
-<blockquote class="last">
-<div><p>percentage of each basic color</p>
-</div></blockquote>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> &#8211; percentage of each basic color</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
 </td>
 </tr>
 </tbody>
@@ -98,23 +91,18 @@ and compute some statistics over it</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>image</strong> : matrix</p>
-<blockquote>
-<div><p>input image</p>
-</div></blockquote>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>image</strong> (<em>matrix</em>) &#8211; input image</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : tuple</p>
-<blockquote class="last">
-<div><ul class="simple">
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>out</strong> &#8211;<ul class="simple">
 <li>mean saturation</li>
 <li>mean brightness</li>
 <li>std saturation</li>
 <li>std brightness</li>
 <li>circular variance</li>
 </ul>
-</div></blockquote>
 </td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)">tuple</a></td>
 </tr>
 </tbody>
 </table>
@@ -129,27 +117,22 @@ given its mean of brightness and saturation</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>brightness: float</strong></p>
-<blockquote>
-<div><blockquote>
-<div><p>mean value of brightness</p>
-</div></blockquote>
-<dl class="docutils">
-<dt>saturation: float</dt>
-<dd><p class="first last">mean value of saturation</p>
-</dd>
-</dl>
-</div></blockquote>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>brightness</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; mean value of brightness</li>
+<li><strong>saturation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; mean value of saturation</li>
+</ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : tuple</p>
-<blockquote class="last">
-<div><ul class="simple">
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p><strong>out</strong> &#8211;</p>
+<ul class="simple">
 <li>pleasure : float</li>
 <li>arousal : float</li>
 <li>dominance : float</li>
 </ul>
-</div></blockquote>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)">tuple</a></p>
 </td>
 </tr>
 </tbody>

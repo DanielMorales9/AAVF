@@ -12,6 +12,7 @@ Welcome to AAVF's documentation!
 
    color
    composition
+   texturalproperties
 
 
 Indices and tables
