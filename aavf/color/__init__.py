@@ -25,15 +25,15 @@ def basic_color_amount(image, color_labels):
 
         Parameters
         ----------
-            image : matrix
-                input image
-            color_labels: array
-                basic label for each color
+        image : matrix
+            input image
+        color_labels : array
+            basic label for each color
 
         Returns
         -------
-            out : ndarray
-                percentage of each basic color
+        ndarray
+            percentage of each basic color
 
     """
 
@@ -59,17 +59,16 @@ def hsv_statistics(image):
 
         Parameters
         ----------
-            image : matrix
-                input image
+        image : matrix
+            input image
 
         Returns
         -------
-            out : tuple
-                - mean saturation
-                - mean brightness
-                - std saturation
-                - std brightness
-                - circular variance
+        mean saturation
+        mean brightness
+        std saturation
+        std brightness
+        circular variance
     """
     # mean of Saturation
     mean_s = np.mean(image[:, :, 1])
@@ -94,17 +93,16 @@ def pleasure_arousal_dominance(brightness, saturation):
 
         Parameters
         ----------
-            brightness: float
-                mean value of brightness
-            saturation: float
-                mean value of saturation
+        brightness: float
+            mean value of brightness
+        saturation: float
+            mean value of saturation
 
         Returns
         -------
-            out : tuple
-                - pleasure : float
-                - arousal : float
-                - dominance : float
+        pleasure : float
+        arousal : float
+        dominance : float
     """
 
     pleasure = 0.69 * brightness + 0.22 * saturation
